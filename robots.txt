@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# Source and preview only. Production build generates rules and a sitemap using SITE_URL.

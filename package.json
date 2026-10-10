@@ -1,0 +1,25 @@
+{
+  "name": "flownix-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Original Flownix static website with reproducible production checks",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "build:production": "node scripts/build.cjs --production",
+    "preview": "node scripts/preview.cjs",
+    "lint": "node --check assets/site.js && node scripts/check.cjs",
+    "typecheck": "tsc -p jsconfig.json",
+    "test": "node scripts/test.cjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "html-validate": "10.11.1",
+    "lighthouse": "13.5.0",
+    "lightningcss": "1.32.0",
+    "playwright": "1.58.2",
+    "typescript": "5.9.3"
+  }
+}
