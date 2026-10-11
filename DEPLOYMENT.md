@@ -4,7 +4,7 @@ The owner has not purchased a domain yet. Nothing has been deployed. The supplie
 
 ## Local checks
 
-Use Node.js 22.19+ and npm. There are no runtime packages, backend, database, API keys or form service. Development tools are pinned in `package-lock.json`.
+Use Node.js 22 (22.19 or newer within that major) and npm. The package pins the Node major to 22.x so Vercel does not automatically switch to a new major. There are no runtime packages, backend, database, API keys or form service. Development tools are pinned in `package-lock.json`.
 
 ```powershell
 npm.cmd ci
@@ -40,6 +40,8 @@ Hosting build command: `npm ci && npm run build:production`, or let the host ins
 Production builds require a valid HTTPS origin and generate canonical/og:url, absolute social-image URLs, business/WebSite schema URLs, robots.txt, and a one-page XML sitemap. The synthetic `.example` domain used by build tests stays inside a test fixture excluded from the delivery ZIP.
 
 ## Hosting configuration
+
+For Vercel, the repository-root `vercel.json` sets the framework to Other, installs with `npm ci`, builds with `npm run build`, and serves `dist`. This fixes the default `public` output-directory mismatch. Use the repository root as the Vercel Root Directory. Without `SITE_URL`, this deploys a non-indexable review preview; after confirming the real domain, set `SITE_URL` in Vercel's build environment and rebuild to generate indexable metadata and the sitemap. The root configuration selects the output; the generated header configuration in `dist/vercel.json` is not applied automatically to a source-root Vercel project.
 
 Publish only `dist/` to a static host. Do not upload dependencies, tests, backups, or the standalone preview. This site uses section fragments, with no SPA router or catch-all rewrite.
 
