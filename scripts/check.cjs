@@ -9,7 +9,7 @@ const root=path.resolve(__dirname,'..');
  const css=fs.readFileSync(path.join(root,'assets/site.css'),'utf8');
  const validator=new HtmlValidate({extends:['html-validate:recommended'],rules:{'no-inline-style':'off','long-title':'off','prefer-native-element':'off','require-sri':'off','svg-focusable':'off','wcag/h32':'off'}});
  let failures=0;
- for(const file of ['index.html','404.html']){
+ for(const file of ['index.html','404.html','privacy.html','terms.html']){
    const result=await validator.validateFile(path.join(root,file));
    for(const r of result.results)for(const m of r.messages)console.log(`${file}:${m.line}:${m.column} ${m.ruleId} ${m.message}`);
    failures+=result.errorCount;

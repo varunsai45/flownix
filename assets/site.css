@@ -191,3 +191,20 @@ input::placeholder,textarea::placeholder{color:rgba(243,245,240,.65)}
 select option{background:var(--bg);color:var(--text)}
 .draft-panel textarea{color:var(--text);border-color:rgba(243,245,240,.4)}
 .float-chip{border-color:var(--line)}
+
+/* Policy pages share the same restrained dark theme. */
+.legal-header{border-bottom:1px solid var(--line)}
+.legal-header-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:20px;flex-wrap:wrap}
+.legal-header nav{display:flex;gap:20px;flex-wrap:wrap}.legal-header nav a,.legal-contents a{display:inline-flex;align-items:center;min-height:44px}
+.legal-page{max-width:880px;padding-block:64px 80px;overflow-wrap:anywhere}
+.legal-page h1{font-size:clamp(38px,6vw,64px);line-height:1.12;margin:18px 0 12px}
+.legal-date{color:var(--muted);font-size:14px}.legal-page p,.legal-page li{color:var(--muted);line-height:1.85}
+.legal-page strong{color:var(--text)}.legal-page h2{font-size:clamp(23px,3vw,30px);line-height:1.3;margin-bottom:16px}
+.legal-page section{margin-top:40px;scroll-margin-top:24px}.legal-page ul{padding-left:24px}.legal-page li{margin-block:8px}
+.legal-page p a,.legal-page li a{color:var(--text);text-decoration:underline;text-underline-offset:4px}
+.legal-page a:hover,.legal-header nav a:hover{color:var(--lime)}
+.legal-contents{display:flex;flex-wrap:wrap;gap:6px 24px;padding-block:20px;border-block:1px solid var(--line);margin-top:30px;color:var(--lime)}
+.legal-page>.btn{margin-top:32px}.footerlinks{flex-wrap:wrap;justify-content:flex-end}.footerlinks a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:760px){.footerinner{align-items:flex-start;flex-direction:column}.footerlinks{justify-content:flex-start}.legal-page{padding-top:40px}.legal-header nav{gap:16px}}
+
+.form-note a{text-decoration:underline;text-underline-offset:4px;color:var(--text)}

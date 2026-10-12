@@ -27,7 +27,7 @@ if (origin) {
   html=html.replace(schemaMatch[0],'<script type="application/ld+json">'+JSON.stringify(schema)+'</script>');
   html=html.replace('</head>',`<link rel="canonical" href="${origin}/"><meta property="og:url" content="${origin}/"><meta property="og:image" content="${origin}/assets/social-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Flownix — websites, marketing and business automation in Bangalore"><meta name="twitter:image" content="${origin}/assets/social-card.png"><meta name="twitter:image:alt" content="Flownix — websites, marketing and business automation in Bangalore"></head>`);
   if (!fs.existsSync(path.join(root,'assets/social-card.png'))) throw Error('Missing assets/social-card.png');
-  fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${origin}/</loc></url></urlset>\n`);
+  fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['','privacy.html','terms.html'].map(page=>`<url><loc>${origin}/${page}</loc></url>`).join('')}</urlset>\n`);
 } else {
   html=html.replace('index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1','noindex, nofollow');
   // Prevent a stale sitemap surviving a switch from production to preview mode.
@@ -36,6 +36,12 @@ if (origin) {
 fs.writeFileSync(path.join(out,'index.html'),html);
 fs.writeFileSync(path.join(out,'robots.txt'),origin?`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`:'User-agent: *\nDisallow: /\n');
 fs.copyFileSync(path.join(root,'404.html'),path.join(out,'404.html'));
+for(const page of ['privacy.html','terms.html']){
+  let legal=fs.readFileSync(path.join(root,page),'utf8');
+  if(origin)legal=legal.replace('</head>',`<link rel="canonical" href="${origin}/${page}"><meta property="og:url" content="${origin}/${page}"><meta property="og:image" content="${origin}/assets/social-card.png"></head>`);
+  else legal=legal.replace('content="index, follow"','content="noindex, nofollow"');
+  fs.writeFileSync(path.join(out,page),legal);
+}
 const hash=crypto.createHash('sha256').update(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]).digest('base64');
 const csp=`default-src 'self'; script-src 'self' 'sha256-${hash}'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'`;
 const headers={'Content-Security-Policy':csp,'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','Permissions-Policy':'camera=(), microphone=(), geolocation=()','X-Frame-Options':'DENY'};

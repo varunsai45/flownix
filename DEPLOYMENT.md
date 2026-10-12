@@ -76,3 +76,7 @@ CSS and JavaScript were extracted from the original HTML. Build minifies CSS. De
 - Verify Search Console and submit the sitemap. Rerun live-host Lighthouse/PageSpeed; local lab results are not field Core Web Vitals.
 
 Do not deploy until the owner explicitly approves publication.
+
+## Policy pages
+
+`privacy.html` and `terms.html` are included in the output and linked from the homepage. When SITE_URL is configured, the sitemap includes all three pages and each policy receives its own canonical URL. Preview builds keep all three pages non-indexable. Update the privacy notice before introducing analytics, tracking, a hosted form or new data-processing services. Agree project-specific payment, cancellation and refund terms in writing before accepting payment.

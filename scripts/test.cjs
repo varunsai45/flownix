@@ -92,6 +92,23 @@ async function test(name,fn){if(process.env.TEST_FILTER&&!name.includes(process.
   assert.equal((await context.request.get(base+'/missing-page')).status(),404);assert.equal((await context.request.get(base+'/index.html',{maxRedirects:0})).status(),301);
   assert.equal((await context.request.get(base+'/assets/favicon.svg')).status(),200);
  });
+ await test('Policy pages, footer links and responsive accessibility',async()=>{
+  await page.goto(base);
+  assert.equal(await page.locator('footer a[href="privacy.html"]').count(),1);
+  assert.equal(await page.locator('footer a[href="terms.html"]').count(),1);
+  assert.equal(await page.locator('#contact-note a[href="privacy.html"]').count(),1);
+  for(const file of ['privacy.html','terms.html'])for(const width of [1440,768,390,320]){
+   await page.setViewportSize({width,height:900});
+   const response=await page.goto(base+'/'+file,{waitUntil:'networkidle'});assert.equal(response.status(),200);
+   assert.equal(await page.locator('h1').count(),1);
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   assert.deepEqual(await page.locator('a[href^="#"]').evaluateAll(links=>links.filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.hash)),[]);
+   const axe=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();assert.deepEqual(axe.violations.map(v=>v.id),[]);
+   if(width===1440||width===390)await page.screenshot({path:path.join(evidence,file+'-'+width+'.png')});
+  }
+  await page.locator('main>.btn').click();await page.waitForURL('**/#contact');assert.equal(await page.locator('#contactForm').count(),1);
+  return {pages:2,widths:[1440,768,390,320],accessibilityViolations:0};
+ });
  await test('No browser runtime errors or failed local requests',async()=>{assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);return {errors,failed};});
  // A deterministic typographic share card, not a replacement portfolio image.
  const card=await context.newPage();await card.setViewportSize({width:1200,height:630});await card.setContent('<!doctype html><html><body style="margin:0;background:#0B0D0B;color:#F3F5F0;font-family:Arial,sans-serif"><main style="padding:76px"><p style="font-size:26px;letter-spacing:6px;color:#78D641">FLOWNIX / BANGALORE</p><h1 style="font-size:78px;line-height:1.05;max-width:1000px;margin:40px 0">Digital that works<br>for your business.</h1><p style="font-size:26px;border-top:2px solid #78D641;padding-top:28px">Websites · Marketing · Business automation</p></main></body></html>');await card.screenshot({path:path.join(root,'assets/social-card.png')});
