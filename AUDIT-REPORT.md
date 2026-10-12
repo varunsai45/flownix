@@ -1,5 +1,8 @@
 # Flownix pre-deployment audit
 
+> **Design update — 12 October 2026:** The owner replaced the original two-colour requirement with black backgrounds, off-white text, lime accents and original-colour project previews. The green image filter has been removed. The original audit below records the earlier design; its Lighthouse scores apply to that earlier audited build. Current theme checks are run separately.
+
+
 Audit date: 10 October 2026. Verdict: **READY AFTER THE LISTED MANUAL STEPS**.
 
 No deployment, DNS changes or outbound enquiries were made. The supplied ZIP remains unchanged. Work was done in a separately extracted folder. The archive contained ten files and no Git metadata; the parent directory was not a Git repository. The original source documents and both HTML files were backed up outside the deliverable project before editing.

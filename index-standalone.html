@@ -150,7 +150,7 @@
     .project-image{height:clamp(230px,31vw,390px);display:block;position:relative;overflow:hidden;background:#0B0D0B;isolation:isolate}
     .project-image:after{content:'';position:absolute;inset:35% 0 0;background:linear-gradient(180deg,transparent,rgba(11,13,11,.55));pointer-events:none}
     .project-shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .4s ease}
-    .project-work:hover .project-shot{transform:scale(1.045);filter:url(#brand-duotone)}
+    .project-work:hover .project-shot{transform:scale(1.045);filter:none}
     .project-open{position:absolute;z-index:2;right:16px;bottom:15px;display:inline-flex;gap:10px;align-items:center;padding:10px 14px;border:1px solid rgba(120,214,65,.3);border-radius:50px;background:rgba(11,13,11,.72);backdrop-filter:blur(12px);font-size:12px;font-weight:700;color:#78D641;transition:background .25s,color .25s,transform .25s}
     .project-work:hover .project-open{background:var(--lime);color:#0B0D0B;transform:translateY(-2px)}
     .project-kicker{color:var(--lime);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:8px}
@@ -172,8 +172,8 @@
     .browser-bar i:first-child{background:#78D641}.browser-bar i:nth-child(2){background:#78D641}.browser-bar i:nth-child(3){background:#78D641}
     .browser-address{height:15px;display:flex;align-items:center;flex:1;min-width:0;margin-left:5px;padding:0 9px;border-radius:5px;background:#78D641;color:#78D641;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:8px}
     .browser-bar b{font-size:10px;font-weight:500;margin:0 3px}
-    .project-shot{display:block;width:100%;height:calc(100% - 25px);object-fit:cover;object-position:top center;transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .5s;filter:url(#brand-duotone)}
-    .project-work:hover .project-shot{transform:scale(1.055);filter:url(#brand-duotone)}
+    .project-shot{display:block;width:100%;height:calc(100% - 25px);object-fit:cover;object-position:top center;transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .5s;filter:none}
+    .project-work:hover .project-shot{transform:scale(1.055);filter:none}
     .project-open{right:30px;bottom:18px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;background:rgba(11,13,11,.86);border-color:rgba(120,214,65,.22);backdrop-filter:blur(14px)}
     .project-work:hover .project-open,.project-image:focus-visible .project-open{opacity:1;transform:translateY(0)}
     .project-work .work-info{position:relative;padding:24px 26px 27px;background:linear-gradient(135deg,rgba(120,214,65,.018),transparent 60%)}
@@ -253,18 +253,18 @@
 }
 
 
-/* Final production refinements. Only the two brand colours and their alpha variants. */
+/* Base production refinements; the approved palette revision follows below. */
 :root{--bg:#0B0D0B;--panel:rgba(120,214,65,.035);--panel2:rgba(120,214,65,.06);--text:#78D641;--muted:rgba(120,214,65,.84);--lime:#78D641;--line:rgba(120,214,65,.26);--accent:#78D641}
 body{overflow-wrap:break-word}button,a,input,textarea,select,summary{-webkit-tap-highlight-color:rgba(120,214,65,.2)}
 ::selection{background:#78D641;color:#0B0D0B}input::placeholder,textarea::placeholder{color:rgba(120,214,65,.75);opacity:1}
 input,textarea,select{caret-color:#78D641}select option{background:#0B0D0B;color:#78D641}
 .skip-link{position:fixed;left:16px;top:12px;z-index:100;padding:12px;background:#78D641;color:#0B0D0B;transform:translateY(-160%)}.skip-link:focus{transform:none}
-.brand-filter{position:absolute;width:0;height:0;pointer-events:none}
+
 .navlinks{gap:18px}.navlinks a{padding-block:10px}.navlinks .btn{padding:12px}
 .hero h1{max-width:700px}.hero-visual{right:-10px;top:45px;width:38%;opacity:.72}.hero p{max-width:590px}
 .orbit,.core-3d,.core-spark,.float-chip,.hero .eyebrow,.hero h1,.hero>.wrap>p,.hero .actions{animation:none}
 .reveal{opacity:1;transform:none}.reveal.is-visible{animation:heroEnter .35s ease both}
-.project-work{will-change:auto}.project-shot,.project-work:hover .project-shot{filter:url(#brand-duotone)}
+.project-work{will-change:auto}.project-shot,.project-work:hover .project-shot{filter:none}
 .browser-window,.browser-bar,.browser-address{background:#0B0D0B;color:#78D641}.browser-bar{border-color:var(--line)}
 .browser-bar i,.browser-bar i:first-child,.browser-bar i:nth-child(2),.browser-bar i:nth-child(3){background:#78D641}
 .project-open{opacity:1;transform:none;color:#78D641;background:rgba(11,13,11,.95)}
@@ -294,6 +294,40 @@ input,textarea,select{caret-color:#78D641}select option{background:#0B0D0B;color
 .service-icon{background:rgba(120,214,65,.1);color:#78D641}.pricecard.featured{background:linear-gradient(160deg,rgba(120,214,65,.08),#0B0D0B 55%)}.core-face{background:linear-gradient(145deg,rgba(120,214,65,.12),#0B0D0B 70%);display:flex;align-items:center;justify-content:center}.core-face.face-side{background:#0B0D0B}.btn-ghost{border-color:rgba(120,214,65,.65)}
 @media(min-width:761px){.hero h1{font-size:clamp(44px,5.3vw,76px)}}
 .btn-ghost{background:#0B0D0B}
+
+/* Approved revised palette: black surfaces, off-white type, selective lime accents. */
+:root{--bg:#0B0D0B;--panel:rgba(243,245,240,.035);--panel2:rgba(243,245,240,.06);--text:#F3F5F0;--muted:rgba(243,245,240,.72);--line:rgba(243,245,240,.16)}
+body,h1,h2,h3{color:var(--text)}
+.logo,.navlinks,.menu,.footerlinks,.service ul,.pricecard ul,.field label,.float-chip b{color:var(--text)}
+.hero p,.local-intro p,.project-work .work-info p,.tag,.visual-caption,.browser-address,.browser-bar,.draft-panel textarea{color:var(--muted)}
+.local-intro p strong,.hero-bottom strong{color:var(--text)}
+.section-head h2 .accent,.about h2 .accent,.contact-copy h2 .accent{color:inherit}
+.nav{background:rgba(11,13,11,.96);border-bottom-color:var(--line)}
+.service,.service-track>.service,.pricecard,.project-work,.about-box,.form,.faq-item{background:var(--panel);border-color:var(--line)}
+.pricecard.featured{background:var(--panel2);border-color:rgba(120,214,65,.55)}
+.project-image{background:var(--panel2)}.project-image:before{background:none}
+.project-work .work-info{background:transparent}
+.project-work .work-info:before,.work-info:before{background:var(--line)}
+.project-shot,.project-work:hover .project-shot{filter:none}
+.browser-window,.browser-bar,.browser-address{background:#0B0D0B}
+.browser-window,.browser-bar{border-color:var(--line)}
+.browser-bar i,.browser-bar i:first-child,.browser-bar i:nth-child(2),.browser-bar i:nth-child(3){background:rgba(243,245,240,.4)}
+.project-open{color:var(--text);border-color:rgba(243,245,240,.3)}
+.plain-language-note,.local-intro{background:var(--panel);border-color:var(--line)}
+.faq-section{background:none}
+.band{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
+.band p{color:var(--muted)}.band:after{color:rgba(243,245,240,.025)}
+.band .btn,.band .btn:hover{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+.btn-ghost{color:var(--text);border-color:rgba(243,245,240,.4)}
+.btn-ghost:hover{color:var(--text);border-color:var(--lime)}
+.service-arrow{color:var(--text);border-color:rgba(243,245,240,.4)}
+.service-arrow:hover,.service-arrow:focus-visible{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+.field input,.field textarea,.field select{color:var(--text);border-color:rgba(243,245,240,.4)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--lime)}
+input::placeholder,textarea::placeholder{color:rgba(243,245,240,.65)}
+select option{background:var(--bg);color:var(--text)}
+.draft-panel textarea{color:var(--text);border-color:rgba(243,245,240,.4)}
+.float-chip{border-color:var(--line)}
 </style>
 <noscript><style>/* Loaded only when scripting is disabled, avoiding a startup layout shift. */
 @media(max-width:1100px){.nav{position:static}.navinner{height:auto;flex-wrap:wrap;padding-block:16px}.navlinks{display:flex;position:static;max-height:none;width:100%;padding:0}.menu{display:none}}
@@ -301,7 +335,6 @@ input,textarea,select{caret-color:#78D641}select option{background:#0B0D0B;color
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <svg class="brand-filter" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><filter id="brand-duotone" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".091 .306 .031 0 .04314 .168 .564 .057 0 .05098 .045 .151 .015 0 .04314 0 0 0 1 0"/></filter></defs></svg>
   <div class="topline"><div class="wrap"><span>Independent digital studio · Based in India, working everywhere</span><span>Available for selected projects ↗</span></div></div>
   <header class="nav"><div class="wrap navinner">
     <a class="logo" href="#home" aria-label="F. FLOWNIX home"><span class="logo-mark">F.</span> FLOWNIX</a>
@@ -404,7 +437,7 @@ input,textarea,select{caret-color:#78D641}select option{background:#0B0D0B;color
           <div class="work-info"><div class="project-kicker">Completed website project</div><h3>Juggle</h3><p>Creative digital agency website with bold 3D-inspired visuals.</p><div class="tagrow"><span class="tag">Website</span><span class="tag">Digital</span><a class="tag" href="https://juggle.co.in/" target="_blank" rel="noopener noreferrer">Visit live website ↗</a></div></div>
         </article>
       </div>
-      <p class="pricing-note">Original project previews, shown in the Flownix colour palette. Open each live website to see its original design.</p>
+      <p class="pricing-note">Original project previews. Open each live website to explore the full design.</p>
     </div></section>
     <section class="section" id="results"><div class="wrap">
       <div class="section-head"><div><div class="eyebrow">03 / Campaign outcomes</div><h2>Marketing that aims<br><span class="accent">beyond clicks.</span></h2></div><p>Lead-generation campaign figures shared by Flownix. Revenue figures are reported potential revenue from enquiries, not confirmed sales or guaranteed revenue.</p></div>

@@ -14,6 +14,12 @@ async function test(name,fn){if(process.env.TEST_FILTER&&!name.includes(process.
  const page=await context.newPage();const errors=[];const failed=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});page.on('requestfailed',r=>failed.push({url:r.url(),reason:r.failure()?.errorText}));
  await page.goto(base,{waitUntil:'networkidle'});
+ await test('Neutral text, lime accents and original-colour portfolio images',async()=>{
+  assert.equal(await page.locator('h1').evaluate(el=>getComputedStyle(el).color),'rgb(243, 245, 240)');
+  assert.equal(await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(11, 13, 11)');
+  assert.equal(await page.locator('.hero .btn-primary').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(120, 214, 65)');
+  assert.deepEqual(await page.locator('.project-shot').evaluateAll(imgs=>imgs.map(img=>getComputedStyle(img).filter)),Array(5).fill('none'));
+ });
  await test('Five original WebP images decode and have matching live project links',async()=>{
   const expected=['https://www.casameliainternational.com/','https://www.enclosesystems.com/','https://www.adornodesigners.in/','https://www.infensol.com/','https://juggle.co.in/'];
   const images=await page.locator('.project-shot').evaluateAll(async imgs=>{for(const img of imgs){img.loading='eager';await img.decode();}return imgs.map(img=>({src:img.getAttribute('src'),width:img.naturalWidth,height:img.naturalHeight,url:img.closest('a').href}));});
@@ -88,7 +94,7 @@ async function test(name,fn){if(process.env.TEST_FILTER&&!name.includes(process.
  });
  await test('No browser runtime errors or failed local requests',async()=>{assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);return {errors,failed};});
  // A deterministic typographic share card, not a replacement portfolio image.
- const card=await context.newPage();await card.setViewportSize({width:1200,height:630});await card.setContent('<!doctype html><html><body style="margin:0;background:#0B0D0B;color:#78D641;font-family:Arial,sans-serif"><main style="padding:76px"><p style="font-size:26px;letter-spacing:6px">FLOWNIX / BANGALORE</p><h1 style="font-size:78px;line-height:1.05;max-width:1000px;margin:40px 0">Digital that works<br>for your business.</h1><p style="font-size:26px;border-top:2px solid #78D641;padding-top:28px">Websites · Marketing · Business automation</p></main></body></html>');await card.screenshot({path:path.join(root,'assets/social-card.png')});
+ const card=await context.newPage();await card.setViewportSize({width:1200,height:630});await card.setContent('<!doctype html><html><body style="margin:0;background:#0B0D0B;color:#F3F5F0;font-family:Arial,sans-serif"><main style="padding:76px"><p style="font-size:26px;letter-spacing:6px;color:#78D641">FLOWNIX / BANGALORE</p><h1 style="font-size:78px;line-height:1.05;max-width:1000px;margin:40px 0">Digital that works<br>for your business.</h1><p style="font-size:26px;border-top:2px solid #78D641;padding-top:28px">Websites · Marketing · Business automation</p></main></body></html>');await card.screenshot({path:path.join(root,'assets/social-card.png')});
  await browser.close();
  const resultFile=path.join(evidence,'browser-results.json');
  const combined=process.env.TEST_FILTER&&fs.existsSync(resultFile)?JSON.parse(fs.readFileSync(resultFile,'utf8')).results.filter(old=>!results.some(current=>current.name===old.name)).concat(results):results;

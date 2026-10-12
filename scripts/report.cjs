@@ -7,6 +7,9 @@ const tests=browser.results.map(r=>`| ${r.name} | ${r.status.toUpperCase()}${r.e
 const metrics=audits.map(r=>`| ${r.mode} | ${Math.round(r.categories.performance*100)} | ${Math.round(r.categories.accessibility*100)} | ${Math.round(r.categories['best-practices']*100)} | ${Math.round(r.categories.seo*100)} | ${r.metrics['largest-contentful-paint']} | ${r.metrics['total-blocking-time']} | ${r.metrics['cumulative-layout-shift']} |`).join('\n');
 const report=`# Flownix pre-deployment audit
 
+> **Design update — 12 October 2026:** The owner replaced the original two-colour requirement with black backgrounds, off-white text, lime accents and original-colour project previews. The green image filter has been removed. The original audit below records the earlier design; its Lighthouse scores apply to that earlier audited build. Current theme checks are run separately.
+
+
 Audit date: 10 October 2026. Verdict: **READY AFTER THE LISTED MANUAL STEPS**.
 
 No deployment, DNS changes or outbound enquiries were made. The supplied ZIP remains unchanged. Work was done in a separately extracted folder. The archive contained ten files and no Git metadata; the parent directory was not a Git repository. The original source documents and both HTML files were backed up outside the deliverable project before editing.

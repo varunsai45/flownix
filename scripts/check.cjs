@@ -15,8 +15,8 @@ const root=path.resolve(__dirname,'..');
    failures+=result.errorCount;
  }
  transform({filename:'assets/site.css',code:Buffer.from(css),errorRecovery:false});
- for(const hex of css.match(/#[\da-f]{3,8}\b/gi)||[])assert.match(hex,/^#(?:0b0d0b|78d641)(?:[\da-f]{2})?$/i);
- for(const rgba of css.matchAll(/rgba\((\d+),(\d+),(\d+),/g))assert.ok(['11,13,11','120,214,65'].includes(rgba.slice(1).join(',')));
+ for(const hex of css.match(/#[\da-f]{3,8}\b/gi)||[])assert.match(hex,/^#(?:0b0d0b|78d641|f3f5f0)(?:[\da-f]{2})?$/i);
+ for(const rgba of css.matchAll(/rgba\((\d+),(\d+),(\d+),/g))assert.ok(['11,13,11','120,214,65','243,245,240'].includes(rgba.slice(1).join(',')));
  for(const match of html.matchAll(/(?:src|href)="(assets\/[^\"]+)"/g))assert.ok(fs.existsSync(path.join(root,match[1])),`Missing ${match[1]}`);
  assert.equal((html.match(/<h1[ >]/g)||[]).length,1);
  const ids=[...html.matchAll(/\bid="([^\"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,'Duplicate IDs');

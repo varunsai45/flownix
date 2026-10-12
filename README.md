@@ -18,6 +18,6 @@ Read `DEPLOYMENT.md`. Purchase/confirm the domain, set `SITE_URL`, run `npm ci` 
 
 The enquiry flow prepares a draft locally for email/WhatsApp; it does not submit to a backend. It never claims a message was sent. Test actual handoff and receipt yourself before launch.
 
-All five supplied WebP assets are unchanged. A reversible CSS duotone filter enforces the black/lime display palette. No runtime dependencies, credentials, database or API service are needed for this static implementation.
+All five supplied WebP assets are unchanged. The approved revised design uses black surfaces, off-white text, lime accents and original-colour project images. No runtime dependencies, credentials, database or API service are needed for this static implementation.
 
 Generated build output and test evidence are excluded from Git. The delivered audit ZIP contains the original test evidence; running the documented checks regenerates it locally.

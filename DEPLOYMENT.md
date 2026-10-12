@@ -60,7 +60,7 @@ Before launch, open the email and WhatsApp drafts on your own desktop/phone and 
 
 ## Images and design
 
-All five supplied WebP files are unchanged. CSS applies a reversible black/lime duotone display filter; original screenshots, including their browser chrome and crop, remain intact. The live links show original site colours. `social-card.png` is a typographic Flownix share card, not a portfolio replacement.
+All five supplied WebP files are unchanged. The owner approved black backgrounds, off-white text, lime accents and original-colour project previews on 12 October 2026, replacing the initial strict two-colour brief. Image tinting has been removed; screenshots, including their browser chrome and crop, remain intact. `social-card.png` is a typographic Flownix share card, not a portfolio replacement.
 
 CSS and JavaScript were extracted from the original HTML. Build minifies CSS. Device sans-serif fonts replace external font requests. Portfolio images load lazily and specify their intrinsic dimensions.
 
